@@ -2,3 +2,4 @@ venv/
 src/gptEngine.egg-info
 credentials.ini
 dist/
+pyproject.toml
