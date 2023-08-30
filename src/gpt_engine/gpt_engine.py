@@ -1,12 +1,12 @@
 import openai
-from src.gpt_engine.config import config
+from . import config
 from docx import Document
 
 class GPTEngineModel:
 
     def __init__(self, main_task, input_prompt):
         self.openai = openai
-        self.params = config()
+        self.params = config.config()
         self.main_task = main_task
         self.input_prompt = input_prompt
         self.api_key = self.params['openai_api_key']
@@ -72,7 +72,7 @@ class GPTEngineModel:
             messages.append({"role": "user", "content": instruction})
         return messages
 
-    def _generate_response(self, file_path: str):
+    def generate_response(self, file_path: str):
         """
         Generate a response from OpenAI.
 

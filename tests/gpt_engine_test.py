@@ -24,7 +24,7 @@ class TestGPTEngine(unittest.TestCase):
     def test_generate_response(self, mock_get_file):
         mock_get_file.return_value = "This is a test document."
         gpt_engine = GPTEngineModel("Write a poem", "A poem about love")
-        response = gpt_engine._generate_response("test.docx")
+        response = gpt_engine.generate_response("test.docx")
         self.assertGreater(len(response), 0)
 
 if __name__ == "__main__":
