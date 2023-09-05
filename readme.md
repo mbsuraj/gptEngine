@@ -1,34 +1,92 @@
-## GPT Engine
+# GPTEngineModel Class Documentation
 
-GPT Engine is a Python module that allows you to interact with the OpenAI API to generate text. It can be used for a variety of tasks, such as:
+The `GPTEngineModel` class is designed to interact with the OpenAI GPT-3.5 Turbo engine using prompts from a .doc file. It provides a convenient way to generate responses based on tasks and input prompts.
 
-### Generating text: 
-This task allows you to generate text in a variety of formats, such as poems, code, scripts, musical pieces, email, letters, etc.
-### Answering questions:
-This task allows you to ask OpenAI questions and get informative answers, even if they are open ended, challenging, or strange.
-### Following instructions: 
-This task allows you to provide OpenAI with instructions and have it complete your requests thoughtfully.
-To use GPT Engine, you will need to create a free account with OpenAI and get an API key. You can then install the GPT Engine module using pip:
+## Table of Contents
 
-pip install gptEngine
-Once you have installed the module, you need to create a credentials.ini file in the same directory as your project. The credentials.ini file should contain the following information:
+1. [Installation](#installation)
+2. [Usage](#usage)
+3. [Class Details](#class-details)
+   - [Attributes](#attributes)
+   - [Methods](#methods)
+4. [Example](#example)
+5. [Contributing](#contributing)
+6. [License](#license)
 
-[openai]
-OPENAI_API_KEY=<YOUR_OPENAI_API_KEY>
-The OPENAI_API_KEY parameter is your OpenAI API key. You can get your API key from your OpenAI account.
+## Installation
 
-Once you have created the credentials.ini file, you can create a GPT Engine object:
+Before using the `GPTEngineModel` class, make sure you have the required dependencies installed:
 
-engine = GPTEngine(main_task="Generate Text", input_prompt="Write a poem about love.")
-The main_task parameter specifies the type of task that you want to perform, and the input_prompt parameter specifies the input text that you want to provide to OpenAI.
+```bash
+pip install openai
+pip install python-docx
+```
 
-To generate text, you can call the generate_response() method:
+## Usage
 
-response = engine.generate_response("Convert the document to a poem.")
-The generate_response() method takes the instructions for how to convert the document as input. The response from OpenAI will be returned as a string.
+To use the `GPTEngineModel` class, follow these steps:
 
-The response from OpenAI will be a new document that has been converted based on the instructions that you have provided.
+1. Create a configuration file containing your OpenAI API key. Refer to the `config.py` file in the code for an example.
 
-For more information, please see the GPT Engine documentation: https://github.com/mbsuraj/gptEngine/blob/main/README.md.
+2. Import the `GPTEngineModel` class:
 
-I hope this helps! Let me know if you have any other questions.
+```python
+from your_module import GPTEngineModel
+```
+
+3. Initialize an instance of the GPTEngineModel class with your main task and input prompt:
+```python
+engine = GPTEngineModel("Main task description", "Input prompt text")
+```
+4. Use the generate_response method to generate responses based on a .doc file:
+```python
+response = engine.generate_response("path/to/your/file.docx")
+print(response)
+```
+
+## Class Details
+
+### Attributes
+
+- `main_task` (str): The main task description.
+- `input_prompt` (str): The input prompt for the GPT-3.5 Turbo engine.
+- `api_key` (str): The OpenAI API key for authentication.
+
+### Methods
+
+#### `generate_response(file_path: str) -> str`
+
+Generate a response from OpenAI based on the provided .doc file.
+
+- **Parameters**:
+  - `file_path` (str): The path to the .doc file.
+
+- **Returns**:
+  - `str`: The response from OpenAI.
+
+### Private Methods
+
+- `_setup_openai()`: Set up the OpenAI API key for authentication.
+- `_get_context() -> str`: Get the context for the current task.
+- `_get_file(file_path: str) -> str`: Read the .doc file and return the text content.
+- `_batch_process(file_path: str) -> List[dict]`: Batch process the instructions and input prompt.
+
+## Example
+
+```python
+from your_module import GPTEngineModel
+
+# Initialize the GPTEngineModel
+engine = GPTEngineModel("Summarize an article", "Please summarize the following article:")
+
+# Generate a response from OpenAI based on a .doc file
+response = engine.generate_response("path/to/your/article.docx")
+print(response)
+```
+
+## Contributing
+
+If you would like to contribute to this project or report issues, please refer to the project's GitHub repository https://github.com/mbsuraj/gptEngine.git.
+
+## License
+This project is licensed under the MIT. See the LICENSE.md file for details.
